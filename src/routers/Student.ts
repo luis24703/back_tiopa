@@ -2,9 +2,11 @@ import { Router } from 'express';
 
 const router: Router = Router();
 
-import {  getStudents } from '../controllers/Student.controller';
+import {  editStudents, getStudents } from '../controllers/Student.controller';
 
 router.get('/', getStudents);
+
+router.put('/editarAlumno/:idUser', editStudents)
 
 
 export default router;

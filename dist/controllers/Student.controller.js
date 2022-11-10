@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getStudents = void 0;
+exports.editStudents = exports.getStudents = void 0;
 const Users_1 = __importDefault(require("../models/Users"));
 //Obtener alumnos
 const getStudents = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -25,4 +25,17 @@ const getStudents = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.getStudents = getStudents;
+//Editar Alumno
+const editStudents = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const editarAlumno = req.body;
+        yield Users_1.default.findByIdAndUpdate({ _id: req.params.idUser }, editarAlumno);
+        res.status(200).json({ message: "Alumno actualizado." });
+    }
+    catch (error) {
+        res.status(500).json({ message: "Error del servidor.", error });
+        console.log(error);
+    }
+});
+exports.editStudents = editStudents;
 //# sourceMappingURL=Student.controller.js.map
